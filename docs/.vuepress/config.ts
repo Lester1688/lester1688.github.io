@@ -37,14 +37,19 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/': {
         selectLanguageText: 'Languages',
         selectLanguageName: 'English',
+        
       },
       '/zh-CN/': {
         selectLanguageText: '选择语言',
         selectLanguageName: '中文简体',
+        contributorsText: '贡献者',
+        lastUpdatedText: '最后更新'
       },
       '/zh-TW/': {
         selectLanguageText: '選擇語言',
         selectLanguageName: '中文繁體',
+        contributorsText: '貢獻者',
+        lastUpdatedText: '最後更新'
       }
     }
   },
