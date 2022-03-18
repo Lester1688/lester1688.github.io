@@ -27,6 +27,10 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: 'https://vuejs.org/images/logo.png',
 
+    navbar: [
+      { text: "Github", link: "https://github.com/Lester1688/lester1688.github.io" }
+    ],
+
     sidebar: false,
     // toggleSidebar: 'sss',
     locales: {
