@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sub App</title>
+    <script type="text/javascript" src="./cross-domain-sub.js"></script>
+</head>
+<body>
+<h1>Sub App</h1>
+<button onclick="onPopup()">popup</button>
+<script>
+    var getParameter = function(name, url) {
+        if (!url) url = window.location.href;
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+    var url = getParameter("url");
+    var sub = new CrossDomainSub(url);
+
+    sub.action("sendRandom", function (payload) {
+        console.group("sub-action-sendRandom");
+        console.log("payload.action", payload.action);
+        console.log("payload.data", payload.data);
+        console.groupEnd();
+        return "我是sub-action-sendRandom返回值:" + Math.random().toString(16).substr(2);
+    });
+
+    function onPopup() {
+        var data = '我是 sub-dispatch-popup 传过来的值：' + Math.random().toString(16).substr(2);
+        sub.dispatch('popup', data, function (payload) {
+            console.group("sub-callback-popup");
+            console.log("payload.action", payload.action);
+            console.log("payload.data", payload.data);
+            console.groupEnd();
+        });
+    }
+</script>
+</body>
+</html>
